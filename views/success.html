@@ -1,0 +1,37 @@
+<%- include include/header.html%>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    登陆成功,正在跳转 <i id="num">4</i>
+                    <small><a href="/">如果没有自动跳转请点击我</a></small>
+                </h1>
+            </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar"
+                     id="progress" style="width: 0%">
+                    <span>0%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        var timer = setInterval(function () {
+            var process = parseFloat(progress.style.width) + 25 + "%";
+            progress.style.width = process;
+            if (progress.style.width == '125%') {
+                window.location.href = '/';
+                clearTimeout(timer);
+            }
+            num.innerHTML -= 1;
+            if (num.innerHTML == -1) {
+                num.innerHTML = 0;
+            }
+        }, 1000)
+    })();
+
+</script>
+<%- include include/footer.html%>
